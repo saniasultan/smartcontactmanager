@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+ th:replace="normal/base::Layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Show contacts</title>
+  <link href="path/to/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<section>
+
+<div class="card mr-3 ml-3">
+<div class="card-body">
+
+<h1 class="text-center">your contacts</h1>
+<div class="search-container my-4">
+
+<input onkeyup="search()"  id="search-input" type="text" class="form-control "placeholder="search "/>
+<div class="search-result">
+
+
+
+
+
+</div>
+
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+           <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="c : ${contacts}">
+        <td th:text="${'SCM2024'+c.cId}">Mark</td>
+   <td>   <img class="myprofilepicture"  src=""  th:src="@{'/image/'+${c.image}}"/>
+   
+   <span    th:text="${c.name}"></span></td>
+      <td >
+     <a href=""  th:href="@{'/user/'+${c.cId}+'/contact/'}">
+    
+     <span th:text="${c.email}"></span>
+     
+     </a>
+      
+      </td>
+     
+     
+      <td th:text="${c.phone}">@mdo</td>
+      
+    <td>
+    <div class="d-inline">
+        <a th:onclick="|deleteContact(${c.cId})|" class="btn btn-danger btn-sm mr-1">Delete</a>
+        <form method="post" th:action="@{'/user/updatecontact/'+${c.cId}}" class="ml-0 d-inline">
+            <button type="submit" class="btn btn-primary btn-sm">Update</button>
+        </form>
+    </div>
+</td>
+    </tr>
+    
+    
+  </tbody>
+ 
+</table>
+</div>
+</div>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a   class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+   
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    
+  </ul>
+</nav>
+
+
+
+
+</section>
+ 
+
+
+</body>
+</html>
